@@ -245,7 +245,7 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
-Secrets of Time/Temp/__Backupscenes/0.backup
+Secrets of Time/Temp/
 Secrets of Time/Temp/ExportedC4DFBXFile.fbx
 Secrets of Time/Temp/UnityLockfile
 Secrets of Time/Temp/UnityTempFile-f0777c9ebbdcea94889613214aee2769
