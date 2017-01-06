@@ -13,6 +13,8 @@ public class Teleport : MonoBehaviour {
     int Choice = 0; //User Choice 0 means start position
     bool Mouse0Pressed = false;
     Quaternion CurrentRotation;
+    bool CoroutineRunning;
+    IEnumerator<bool> co;
 
     Vector3 GetPosition(GameObject _Object)//Obvious
     {
@@ -24,24 +26,34 @@ public class Teleport : MonoBehaviour {
         return _Object.transform.rotation;
     }
 
+    void NextChoice()
+    {
+        Choice++;
+        if (Choice == 5) //Loops
+        {
+            Choice = 0;
+            TimeMachine.transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+    }
+
     void Choose()
     {
         if (clicked[Choice]) clicked[Choice] = false;//Checks if you have clicked the current choice, if you have , well you haven't.
 
-        Choice++; 
-          
-        if (Choice == 5) //Loops
+        if (co == null)
         {
-            Choice = 0;
-            StartCoroutine(RotateTimeMachine(Vector3.up * 90, 0.1f));
-            TimeMachine.transform.rotation = Quaternion.Euler(0, 0, 0);
-        } else
-        {
-            StartCoroutine(RotateTimeMachine(Vector3.up * 90, 0.1f));
+            co = RotateTimeMachine(Vector3.up * 90, 0.2f);
+            NextChoice();
         }
-            
+        else
+        {
+            if (co.Current == true)
+            {
+                co = RotateTimeMachine(Vector3.up * 90, 0.2f);
+                NextChoice();
+            }
+        }     
             Debug.Log(Choice);
-
             if (Mouse0Pressed) Mouse0Pressed = false;
     }
 
@@ -60,19 +72,28 @@ public class Teleport : MonoBehaviour {
         if (!Mouse0Pressed) Mouse0Pressed = true;
     }
 
-    IEnumerator RotateTimeMachine(Vector3 byAngles, float inTime) 
+    IEnumerator<bool> RotateTimeMachine(Vector3 byAngles, float inTime)
     {
-        var fromAngle = GetRotation(TimeMachine);
-        var toAngle = Quaternion.Euler(transform.eulerAngles + byAngles);
-        for (var t = 0f; t < 1; t += Time.deltaTime / inTime)
+        if (!CoroutineRunning)
         {
-            transform.rotation = Quaternion.Slerp(fromAngle, toAngle, t);
-            yield return null;
+            CoroutineRunning = true;
+            Quaternion fromAngle = GetRotation(TimeMachine);
+            Quaternion toAngle = Quaternion.Euler(transform.eulerAngles + byAngles);
+            for (float t = 0; t < 1; t += Time.deltaTime / inTime)
+            {
+                transform.rotation = Quaternion.Slerp(fromAngle, toAngle, t);
+                yield return false;
+            }
+            transform.rotation = Quaternion.Slerp(fromAngle, toAngle, 1);
+            CoroutineRunning = false;
         }
+        yield return true;
     }
 
     void Start()
     {
+        
+        CoroutineRunning = false;
         animation = GetComponent<Animation>();
         animation.Play("idle");
         clicked[0] = true; //You are in the first room.
@@ -90,6 +111,10 @@ public class Teleport : MonoBehaviour {
                 TimeMachine.transform.rotation = CurrentRotation;
                 Debug.Log("Rotation set to " + GetRotation(TimeMachine));
                 animation.Play("idle");
+        }
+        if (co != null)
+        {
+            co.MoveNext();
         }
     }
 }
