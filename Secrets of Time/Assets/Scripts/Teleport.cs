@@ -5,80 +5,91 @@ using UnityEngine;
 public class Teleport : MonoBehaviour {
 
     //Initializing variables
-    public GameObject Player; 
-    public GameObject TimeMachine; //Not yet used
-    public GameObject[] Rooms; //All the rooms  
-    public bool[] clicked; //Array that checks if you've clicked the room on the cube
-    new Animation animation; //Animation component 
-    int Choice = 0; //User Choice 0 means nothing not even the start position
-    
-    void Start() {
+    public GameObject Player;
+    public GameObject TimeMachine;
+    public GameObject[] Rooms = new GameObject[4]; //All the rooms  
+    public bool[] clicked = new bool[4]; //Array that checks if you've clicked the room on the cube
+    new Animation animation;
+    int Choice = 0; //User Choice 0 means start position
+    bool Mouse0Pressed = false;
+    Quaternion CurrentRotation;
 
-        animation = GetComponent<Animation>();
-    }
-
-    Vector3 GetPosition(GameObject _Object)
+    Vector3 GetPosition(GameObject _Object)//Obvious
     {
         return _Object.transform.position;
     }
 
+    Quaternion GetRotation(GameObject _Object)
+    {
+        return _Object.transform.rotation;
+    }
+
     void Choose()
     {
-        if (Choice == 0)
-        {
-            //Otherwise searches for nonexistent Array index -1 
-        }
-        else if (clicked[Choice - 1]) //Checks if you have clicked the current choice, if you have , well you haven't.
-        {
-            clicked[Choice - 1] = false;
-        }
+        if (clicked[Choice]) clicked[Choice] = false;//Checks if you have clicked the current choice, if you have , well you haven't.
 
-        Choice++;
-        animation.Play("choice");
-
-        if (Choice == 6) //Loops
+        Choice++; 
+          
+        if (Choice == 5) //Loops
         {
-            Choice = 1;
+            Choice = 0;
+            StartCoroutine(RotateTimeMachine(Vector3.up * 90, 0.1f));
+            TimeMachine.transform.rotation = Quaternion.Euler(0, 0, 0);
+        } else
+        {
+            StartCoroutine(RotateTimeMachine(Vector3.up * 90, 0.1f));
         }
-        Debug.Log("Room " + Choice);
+            
+            Debug.Log(Choice);
+
+            if (Mouse0Pressed) Mouse0Pressed = false;
     }
 
     void Teleportation()
     {
-        if (Choice == 0)
-        { 
-            //Otherwise searches for nonexistent Array index -1
-        }
-        else
-        {
-            if (!clicked[Choice - 1]) //If it isn't clicked, teleport
+            if (!clicked[Choice]) //If it isn't clicked, teleport
             {
-                Player.transform.position = GetPosition(Rooms[Choice - 1]);
-                clicked[Choice - 1] = true;
-                Debug.Log("You are now in Room " + Choice);
+                CurrentRotation = GetRotation(TimeMachine);
+                animation.Stop("idle");
                 animation.Play("teleport");
+                Player.transform.position = GetPosition(Rooms[Choice]);
+                clicked[Choice] = true;
+                Debug.Log("You are now in Room " + Choice);
             }
-            else if (clicked[Choice - 1]) //If it is clicked, well no teleport for you.
-            {
-                Debug.Log("You are still in the same room");
-            }
+
+        if (!Mouse0Pressed) Mouse0Pressed = true;
+    }
+
+    IEnumerator RotateTimeMachine(Vector3 byAngles, float inTime) 
+    {
+        var fromAngle = GetRotation(TimeMachine);
+        var toAngle = Quaternion.Euler(transform.eulerAngles + byAngles);
+        for (var t = 0f; t < 1; t += Time.deltaTime / inTime)
+        {
+            transform.rotation = Quaternion.Slerp(fromAngle, toAngle, t);
+            yield return null;
         }
+    }
+
+    void Start()
+    {
+        animation = GetComponent<Animation>();
+        animation.Play("idle");
+        clicked[0] = true; //You are in the first room.
+        for (int i = 1; i < clicked.Length; i++) clicked[i] = false; //You are not in the rest of the rooms. idk if defaults are false.
+
     }
 
     void Update() {
 
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0)) Teleportation();           
+        if (Input.GetKeyDown(KeyCode.Mouse1)) Choose();
+        if (Mouse0Pressed && !animation.isPlaying)
         {
-            Teleportation();
-        } 
-        else if (Input.GetKeyDown(KeyCode.Mouse1))
-        {
-            Choose();
+                Debug.Log(CurrentRotation);
+                TimeMachine.transform.rotation = CurrentRotation;
+                Debug.Log("Rotation set to " + GetRotation(TimeMachine));
+                animation.Play("idle");
         }
-        if (animation.isPlaying == false)
-        {
-            animation.Play("idle");
-        }
-
     }
 }
