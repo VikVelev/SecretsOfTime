@@ -11,9 +11,8 @@ public class PlayerLook : MonoBehaviour {
     Vector3 Raycast_pos;
 
     void Update() {
-
         Raycast_pos = Camera.transform.position;
-        if(Physics.Raycast(Raycast_pos, Camera.transform.forward, out rayhit, 10))
+        if(Physics.Raycast(Raycast_pos, Camera.transform.forward, out rayhit, 8))
         {
             Debug.DrawRay(Camera.transform.position, Camera.transform.forward * 10, Color.red, float.PositiveInfinity);
             
