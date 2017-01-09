@@ -2,23 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemInfo : MonoBehaviour {
+public class Floating : MonoBehaviour, IRaycast23 {
 
     public GameObject Canvas;
 
-    void OnTriggerEnter()
+    public void OnTriggerEnter()
     {
         Canvas.GetComponent<Canvas>().enabled = true;
     }
 
-    void OnTriggerStay()
-    {
-        Canvas.GetComponent<Canvas>().enabled = true;
-    }
-
-    void OnTriggerExit()
+    public void OnTriggerExit()
     {
         Canvas.GetComponent<Canvas>().enabled = false;
     }
-
 }
