@@ -10,39 +10,31 @@ public class PlayerLook : MonoBehaviour
     GameObject rayhit_obj;
     RaycastHit rayhit;
     Vector3 Raycast_pos;
+    public int triggerdistance;
 
     void Update()
     {
-
         Raycast_pos = Camera.transform.position;
 
-        if (Physics.Raycast(Raycast_pos, Camera.transform.forward, out rayhit, 100))
+        if (Physics.Raycast(Raycast_pos, Camera.transform.forward, out rayhit, 1000))
         {
             Debug.DrawRay(Camera.transform.position, Camera.transform.forward * 10, Color.red, float.PositiveInfinity);
-            Debug.Log(rayhit.distance);
             rayhit_obj = rayhit.collider.gameObject;
 
-
             Debug.Log(rayhit_obj.name);
-         
-            if (rayhit_obj != rayhit_obj_old && rayhit.distance < 6)
-            {
-                rayhit_obj.SendMessageUpwards("OnTriggerEnter", null, SendMessageOptions.DontRequireReceiver);
-            }
-
             if (rayhit_obj != rayhit_obj_old && rayhit_obj_old != null)
             {
                 rayhit_obj_old.SendMessageUpwards("OnTriggerExit", null, SendMessageOptions.DontRequireReceiver);
+                Debug.Log("If this prints out first, FUCK YOU!");
             }
+            if (rayhit_obj != rayhit_obj_old && rayhit.distance < triggerdistance)
+            {
+                rayhit_obj.SendMessageUpwards("OnTriggerEnter", null, SendMessageOptions.DontRequireReceiver);
+                Debug.Log("Opening Canvas");
+            }
+
+
             rayhit_obj_old = rayhit_obj;
-        }
-        else if (rayhit_obj_old != null)
-        {
-            rayhit_obj_old.SendMessageUpwards("OnTriggerExit", null, SendMessageOptions.DontRequireReceiver);
-        }
-        else
-        {
-            // rayhit_obj.SendMessageUpwards("OnTriggerExit", null, SendMessageOptions.DontRequireReceiver);
         }
 
     }

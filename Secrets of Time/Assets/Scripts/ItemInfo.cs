@@ -15,7 +15,6 @@ public class ItemInfo : MonoBehaviour {
     {
         Canvas.GetComponent<Canvas>().enabled = true;
     }
-
     void OnTriggerExit()
     {
         Canvas.GetComponent<Canvas>().enabled = false;

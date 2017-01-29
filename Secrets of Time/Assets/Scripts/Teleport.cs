@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Teleport : MonoBehaviour {
 
     //Initializing variables
+    public Text Choice_;
     public GameObject Player;
     public GameObject TimeMachine;
     public GameObject[] Rooms = new GameObject[5]; //All the rooms  
@@ -27,10 +29,11 @@ public class Teleport : MonoBehaviour {
     void NextChoice()
     {
         Choice++; //Next Choice
-       
+        
         if (Choice == 5) //Loops if no more choices
         {
             Choice = 0;
+            Choice_.text = "0";
             CheckChoiceAnim();
             TimeMachine.transform.rotation = Quaternion.Euler(0, 0, 0);
         }
@@ -39,6 +42,28 @@ public class Teleport : MonoBehaviour {
             CheckChoiceAnim();
         }
             
+    }
+
+    void GUIChoice()
+    {
+        switch (Choice)
+        {
+            case 0:
+                Choice_.text = "0";
+                break;
+            case 1:
+                Choice_.text = "1";
+                break;
+            case 2:
+                Choice_.text = "2";
+                break;
+            case 3:
+                Choice_.text = "3";
+                break;
+            case 4:
+                Choice_.text = "4";
+                break;
+        }
     }
 
     void CheckChoiceAnim()
@@ -84,6 +109,8 @@ public class Teleport : MonoBehaviour {
     }
     void Start()
     {
+        Choice_ = GameObject.Find("Canvas").GetComponent<Text>();
+        Choice_.text = "0";
         animation = GetComponent<Animation>();
         clicked[0] = true; //You are in the first room.
         for (int i = 1; i < clicked.Length; i++) clicked[i] = false; //You are not in the rest of the rooms. idk if defaults are false.
@@ -100,5 +127,6 @@ public class Teleport : MonoBehaviour {
         {
                animation.Play("idle");
         }
+        //GUIChoice();
     }
 }
