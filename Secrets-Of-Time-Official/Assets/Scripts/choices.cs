@@ -12,7 +12,7 @@ public class choices : MonoBehaviour {
     new Animation animation;
     public float Timer = 0;
     bool hidden = true;
-    int Choice = -1; //0 - 1950, 1 - 1980, 2 - 2000, 3 - 2017
+    int Choice = -1; //-1 - Start Room (You can't go back there) 0 - 1950, 1 - 1980, 2 - 2000, 3 - 2017
 
     public Vector3 GetPosition(GameObject _Object)//Obvious
     {
@@ -48,62 +48,66 @@ public class choices : MonoBehaviour {
         return _toggle;
     }
 
-    void Choose()
+    void Choose()//Obvious
     {
         if (!animation.isPlaying || animation.IsPlaying("time_machine_idle"))
         {
             if (!hidden)
             {
                 Hide(TimeMachine);
+                //animation["hide"].speed = -1;
+                //animation.CrossFade("hide", 0.5f);
             }
             else
             {
                 SetTimer(10);
             }
             Choice++;
-            //too lazy to rewrite with switch
-            if (Choice == 1) animation.Play("choice1");
-            if (Choice == 2) animation.Play("choice2");
-            if (Choice == 3) animation.Play("choice3");
-            if (Choice == 0) animation.Play("choice4"); //0 animaciq trqbva da preminava 2017-1950.
-            if (Choice == 4)
+            //too lazy to rewrite with switch, but this works I think
+            if (Choice == 1) animation.CrossFade("choice1", 0.5f);
+            if (Choice == 2) animation.CrossFade("choice2", 0.5f);
+            if (Choice == 3) animation.CrossFade("choice3", 0.5f);
+            if (Choice == 0) animation.CrossFade("choice4", 0.5f);
+            if (Choice == Rooms.Length)
             {
                 Choice = 0;
+                animation.CrossFade("choice4", 0.5f);
             }
-            Debug.Log(Choice);
+            //Debug.Log(Choice);
         }
     }
 
-    void Teleportation(int _choice)
+    void Teleportation(int _choice)//Obvious
     {
-        SetTimer(10);
-        animation.Play("teleportation");
-        Player.transform.position = Rooms[_choice].transform.position;
-        clicked[_choice] = true;
-        //TODO: THIS IS NOT WORKING AT ALL
-            if (Choice != 0)
+        if (!clicked[_choice])
+        {
+            animation.CrossFade("teleportation", 1f);
+            for (int i = 0; i < clicked.Length; i++)
             {
-                TimeMachine.transform.Rotate(0, Choice * 90, 0);
-                Debug.Log("1234123");
-            } else
-            {
-                TimeMachine.transform.Rotate(0, 90, 0);
-                Debug.Log("1234123");
+                clicked[i] = false;//Equilibrium!!@!@!@!
             }
-        //end TODO
+            SetTimer(10);           
+            Player.transform.position = Rooms[_choice].transform.position;
+            clicked[Choice] = true;
+        }
     }
 
-    void Start()
+    void Awake()//Obvious
     {
+        animation = TimeMachine.GetComponent<Animation>();
+    }
+
+    void Start()//Obvious
+    {               
+        //animation.CrossFade("hide", 0.2f);
         if (hidden)
         {
-            Hide(TimeMachine);
+           Hide(TimeMachine);
         }
-        animation = TimeMachine.GetComponent<Animation>();
-        clicked[0] = true; //You are in the first room.
+        
     }
 
-    void Update()
+    void Update()//Obvious
     {
         Timer -= Time.deltaTime;// Timer
 
@@ -114,12 +118,19 @@ public class choices : MonoBehaviour {
 
         if(Timer <= 0)
         {
-            Hide(TimeMachine);
+
+            //animation.CrossFade("hide",0.5f);
+
+            if (!animation.IsPlaying("hide"))
+            {
+                Hide(TimeMachine);
+
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            Teleportation(Choice);
+                Teleportation(Choice);
         }
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
@@ -127,9 +138,9 @@ public class choices : MonoBehaviour {
         }
         if (!animation.isPlaying)
         {
-            animation.Play("time_machine_idle");
+            animation.CrossFade("time_machine_idle", 0.5f);
         }
-        Debug.Log(Math.Ceiling(Timer));
+        //Debug.Log(Math.Ceiling(Timer) + " secs");
     }
 }
 

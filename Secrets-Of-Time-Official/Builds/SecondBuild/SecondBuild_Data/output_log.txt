@@ -1,0 +1,81 @@
+Mono path[0] = 'D:/Projects/Unity/secrets-of-time/Secrets-Of-Time-Official/Builds/SecondBuild/SecondBuild_Data/Managed'
+Mono path[1] = 'D:/Projects/Unity/secrets-of-time/Secrets-Of-Time-Official/Builds/SecondBuild/SecondBuild_Data/Mono'
+Mono config path = 'D:/Projects/Unity/secrets-of-time/Secrets-Of-Time-Official/Builds/SecondBuild/SecondBuild_Data/Mono/etc'
+PlayerConnection initialized from D:/Projects/Unity/secrets-of-time/Secrets-Of-Time-Official/Builds/SecondBuild/SecondBuild_Data (debug = 0)
+PlayerConnection initialized network socket : 0.0.0.0 55316
+Multi-casting "[IP] 192.168.0.105 [Port] 55316 [Flags] 3 [Guid] 3973321838 [EditorId] 2848542144 [Version] 1048832 [Id] WindowsPlayer(DESKTOP-9IQGAAC) [Debug] 0" to [225.0.0.222:54997]...
+Waiting for connection from host on [0.0.0.0:55316]...
+PlayerConnection accepted from [192.168.0.105] handle:0x28c
+Started listening to [0.0.0.0:55316]
+PlayerConnection already initialized - listening to [0.0.0.0:55316]
+Initialize engine version: 5.5.0p3 (84ad46be53aa)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: ASUS R7 265 Series (ID=0x6819)
+    Vendor:   ATI
+    VRAM:     2029 MB
+    Driver:   21.19.137.514
+Begin MonoManager ReloadAssembly
+Platform assembly: D:\Projects\Unity\secrets-of-time\Secrets-Of-Time-Official\Builds\SecondBuild\SecondBuild_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading D:\Projects\Unity\secrets-of-time\Secrets-Of-Time-Official\Builds\SecondBuild\SecondBuild_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: D:\Projects\Unity\secrets-of-time\Secrets-Of-Time-Official\Builds\SecondBuild\SecondBuild_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
+Loading D:\Projects\Unity\secrets-of-time\Secrets-Of-Time-Official\Builds\SecondBuild\SecondBuild_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
+Platform assembly: D:\Projects\Unity\secrets-of-time\Secrets-Of-Time-Official\Builds\SecondBuild\SecondBuild_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading D:\Projects\Unity\secrets-of-time\Secrets-Of-Time-Official\Builds\SecondBuild\SecondBuild_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: D:\Projects\Unity\secrets-of-time\Secrets-Of-Time-Official\Builds\SecondBuild\SecondBuild_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading D:\Projects\Unity\secrets-of-time\Secrets-Of-Time-Official\Builds\SecondBuild\SecondBuild_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: D:\Projects\Unity\secrets-of-time\Secrets-Of-Time-Official\Builds\SecondBuild\SecondBuild_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading D:\Projects\Unity\secrets-of-time\Secrets-Of-Time-Official\Builds\SecondBuild\SecondBuild_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: D:\Projects\Unity\secrets-of-time\Secrets-Of-Time-Official\Builds\SecondBuild\SecondBuild_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll (this message is harmless)
+Loading D:\Projects\Unity\secrets-of-time\Secrets-Of-Time-Official\Builds\SecondBuild\SecondBuild_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll into Unity Child Domain
+Platform assembly: D:\Projects\Unity\secrets-of-time\Secrets-Of-Time-Official\Builds\SecondBuild\SecondBuild_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
+Loading D:\Projects\Unity\secrets-of-time\Secrets-Of-Time-Official\Builds\SecondBuild\SecondBuild_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
+- Completed reload, in  0.021 seconds
+Platform assembly: D:\Projects\Unity\secrets-of-time\Secrets-Of-Time-Official\Builds\SecondBuild\SecondBuild_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: D:\Projects\Unity\secrets-of-time\Secrets-Of-Time-Official\Builds\SecondBuild\SecondBuild_Data\Managed\System.dll (this message is harmless)
+desktop: 1920x1080 60Hz; virtual: 3840x1080 at 0,0
+<RI> Initializing input.
+XInput1_3.dll not found. Trying XInput9_1_0.dll instead...
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 1.338213 ms
+The animation state hide could not be played because it couldn't be found!
+Please attach an animation clip with the name 'hide' or call this function only for existing animations.
+UnityEngine.Animation:CrossFade(String, Single, PlayMode)
+UnityEngine.Animation:CrossFade(String, Single) (at C:\buildslave\unity\build\artifacts\generated\common\modules\Animation\AnimationsBindings.gen.cs:398)
+choices:Start() (at D:\Projects\Unity\secrets-of-time\Secrets-Of-Time-Official\Assets\Scripts\choices.cs:102)
+
+[C:/buildslave/unity/build/Runtime/Animation/Animation.cpp line 424] 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/modules/Animation/AnimationsBindings.gen.cs Line: 398)
+
+Setting up 2 worker threads for Enlighten.
+GfxDevice: creating device client; threaded=1
+GfxDevice: creating device client; threaded=1
+  Thread -> id: 1e44 -> priority: 1 
+  Thread -> id: 2ce4 -> priority: 1 
+The animation state hide could not be played because it couldn't be found!
+Please attach an animation clip with the name 'hide' or call this function only for existing animations.
+UnityEngine.Animation:CrossFade(String, Single, PlayMode)
+UnityEngine.Animation:CrossFade(String, Single) (at C:\buildslave\unity\build\artifacts\generated\common\modules\Animation\AnimationsBindings.gen.cs:398)
+choices:Choose() (at D:\Projects\Unity\secrets-of-time\Secrets-Of-Time-Official\Assets\Scripts\choices.cs:59)
+choices:Update() (at D:\Projects\Unity\secrets-of-time\Secrets-Of-Time-Official\Assets\Scripts\choices.cs:137)
+
+[C:/buildslave/unity/build/Runtime/Animation/Animation.cpp line 424] 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/modules/Animation/AnimationsBindings.gen.cs Line: 398)
+
+GfxDevice: creating device client; threaded=1
+GfxDevice: creating device client; threaded=1
+GfxDevice: creating device client; threaded=1
+GfxDevice: creating device client; threaded=1
+GfxDevice: creating device client; threaded=1
+The animation state hide could not be played because it couldn't be found!
+Please attach an animation clip with the name 'hide' or call this function only for existing animations.
+UnityEngine.Animation:CrossFade(String, Single, PlayMode)
+UnityEngine.Animation:CrossFade(String, Single) (at C:\buildslave\unity\build\artifacts\generated\common\modules\Animation\AnimationsBindings.gen.cs:398)
+choices:Update() (at D:\Projects\Unity\secrets-of-time\Secrets-Of-Time-Official\Assets\Scripts\choices.cs:122)
+
+[C:/buildslave/unity/build/Runtime/Animation/Animation.cpp line 424] 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/modules/Animation/AnimationsBindings.gen.cs Line: 398)
+
+Waiting for finish
