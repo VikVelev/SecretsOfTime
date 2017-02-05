@@ -4,15 +4,15 @@ using UnityEngine;
 using System;
 
 public class choices : MonoBehaviour {
-
+    //Before you take a look at my code - CrossFade > Play!!!! :)
     public GameObject Player;
     public GameObject TimeMachine;
     public GameObject[] Rooms = new GameObject[4]; //All the rooms  
-    public bool[] clicked = new bool[4]; //Array that checks if you've clicked the room on the cube
+    public bool[] clicked = new bool[4]; //Array that checks if you're in e certain room
     new Animation animation;
-    public float Timer = 0;
+    public float Timer = 0;//Timer for hiding the time machine after an inactive period of time.
     bool hidden = true;
-    int Choice = -1; //-1 - Start Room (You can't go back there) 0 - 1950, 1 - 1980, 2 - 2000, 3 - 2017
+    public int Choice = -1; //-1 - Start Room (You can't go back there) 0 - 1950, 1 - 1980, 2 - 2000, 3 - 2017
 
     public Vector3 GetPosition(GameObject _Object)//Obvious
     {
@@ -84,7 +84,7 @@ public class choices : MonoBehaviour {
             animation.CrossFade("teleportation", 1f);
             for (int i = 0; i < clicked.Length; i++)
             {
-                clicked[i] = false;//Equilibrium!!@!@!@!
+                clicked[i] = false;//Equilibrium!
             }
             SetTimer(10);           
             Player.transform.position = Rooms[_choice].transform.position;
@@ -119,7 +119,7 @@ public class choices : MonoBehaviour {
         if(Timer <= 0)
         {
 
-            //animation.CrossFade("hide",0.5f);
+            //animation.CrossFade("hide",0.5f); //gotta fix this
 
             if (!animation.IsPlaying("hide"))
             {
@@ -130,7 +130,14 @@ public class choices : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
+            try
+            {
                 Teleportation(Choice);
+            }
+            catch (Exception)
+            {
+                Debug.Log("Your choice is invalid.");
+            }           
         }
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {

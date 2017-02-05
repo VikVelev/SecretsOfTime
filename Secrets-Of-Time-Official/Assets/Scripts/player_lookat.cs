@@ -25,7 +25,7 @@ public class player_lookat : MonoBehaviour
             if (rayhit_obj != rayhit_obj_old && rayhit_obj_old != null)
             {
                 rayhit_obj_old.SendMessageUpwards("OnLookOff", null, SendMessageOptions.DontRequireReceiver);
-                Debug.Log("Exiting...");
+                Debug.Log("Closing Canvas...");
             }
             if (rayhit_obj != rayhit_obj_old && rayhit.distance < triggerdistance)
             {
