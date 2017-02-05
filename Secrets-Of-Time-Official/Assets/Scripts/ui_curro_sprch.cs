@@ -8,20 +8,28 @@ public class ui_curro_sprch : MonoBehaviour {
     public Sprite[] room_sprites = new Sprite[5];
     public GameObject image_can;
     public GameObject player;
-    choices what;
+    choices player_script;
 
     void Start()
     {
         player = GameObject.Find("FPSController");
-        what = player.GetComponent<choices>();               
+        player_script = player.GetComponent<choices>();               
     }
 
     void Update()
     {
-        if (what.clicked[what.Choice])
+        try
         {
-            image_can.GetComponent<Image>().sprite = room_sprites[what.Choice + 1];
+            if (player_script.clicked[player_script.Choice])
+            {
+                image_can.GetComponent<Image>().sprite = room_sprites[player_script.Choice + 1];
+            }
         }
+        catch (System.Exception)
+        {
+            Debug.Log("Index is -1. Don't mind me");
+        }
+        
     }
 
 
