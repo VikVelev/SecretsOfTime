@@ -11,7 +11,7 @@ public class choices : MonoBehaviour {
     public bool[] clicked = new bool[4]; //Array that checks if you're in e certain room
     new Animation animation;
     public float Timer = 0;//Timer for hiding the time machine after an inactive period of time.
-    bool hidden = true;
+    bool hidden = true; //bool that checks if it's hidden
     public int Choice = -1; //-1 - Start Room (You can't go back there) 0 - 1950, 1 - 1980, 2 - 2000, 3 - 2017
 
     public Vector3 GetPosition(GameObject _Object)//Obvious
@@ -55,15 +55,13 @@ public class choices : MonoBehaviour {
             if (!hidden)
             {
                 Hide(TimeMachine);
-                //animation["hide"].speed = -1;
-                //animation.CrossFade("hide", 0.5f);
             }
             else
             {
                 SetTimer(10);
             }
             Choice++;
-            //too lazy to rewrite with switch, but this works I think
+            
             if (Choice == 1) animation.CrossFade("choice1", 0.5f);
             if (Choice == 2) animation.CrossFade("choice2", 0.5f);
             if (Choice == 3) animation.CrossFade("choice3", 0.5f);
@@ -73,7 +71,6 @@ public class choices : MonoBehaviour {
                 Choice = 0;
                 animation.CrossFade("choice4", 0.5f);
             }
-            //Debug.Log(Choice);
         }
     }
 
@@ -99,12 +96,12 @@ public class choices : MonoBehaviour {
 
     void Start()//Obvious
     {               
-        //animation.CrossFade("hide", 0.2f);
+        animation.CrossFade("hide", 0.2f);
         if (hidden)
         {
-           Hide(TimeMachine);
-        }
-        
+            Hide(TimeMachine);
+            Debug.Log("hidden");
+        }      
     }
 
     void Update()//Obvious
@@ -118,14 +115,7 @@ public class choices : MonoBehaviour {
 
         if(Timer <= 0)
         {
-
-            //animation.CrossFade("hide",0.5f); //gotta fix this
-
-            if (!animation.IsPlaying("hide"))
-            {
-                Hide(TimeMachine);
-
-            }
+                  Hide(TimeMachine);          
         }
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
