@@ -1,0 +1,11 @@
+Name: Demi_Sofa
+Version: 2012
+Preview: Yes
+Units: Millimeters
+Dimension: 2136.22 x 939.99 x 929.71
+Polys: 13 544
+XForm: Yes
+Box Trick: Yes
+Model Parts: 10
+Render: Corona
+Formats: 3Ds Max 2012, OBJ, FBX
