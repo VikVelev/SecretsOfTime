@@ -16,4 +16,9 @@ public class scene_start : MonoBehaviour {
         this.gameObject.SetActive(false);
 
     }
+
+    void QuitGame()
+    {
+        Application.Quit();
+    }
 }
