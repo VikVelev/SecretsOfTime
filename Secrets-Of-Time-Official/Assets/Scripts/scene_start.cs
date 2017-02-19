@@ -13,12 +13,13 @@ public class scene_start : MonoBehaviour {
         {
             todisable[i].gameObject.SetActive(false);
         }
-        this.gameObject.SetActive(false);
+        //DontDestroyOnLoad(todisable[todisable.Length - 1]);
 
     }
 
     void QuitGame()
     {
         Application.Quit();
+        
     }
 }
