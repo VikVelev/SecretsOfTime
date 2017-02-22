@@ -22,7 +22,7 @@ public class player_lookat : MonoBehaviour
             rayhit_obj = rayhit.collider.gameObject;
 
             Debug.Log(rayhit_obj.name);
-            if (rayhit_obj != rayhit_obj_old && rayhit_obj_old != null)
+            if (rayhit_obj != rayhit_obj_old && rayhit_obj_old != null || rayhit.distance > triggerdistance)
             {
                 rayhit_obj_old.SendMessageUpwards("OnLookOff", null, SendMessageOptions.DontRequireReceiver);
                 Debug.Log("Closing Canvas...");

@@ -50,6 +50,7 @@ public class choices : MonoBehaviour {
 
     void Choose()//Obvious
     {
+        
         if (!animation.isPlaying || animation.IsPlaying("time_machine_idle"))
         {
             if (!hidden)
@@ -72,12 +73,14 @@ public class choices : MonoBehaviour {
                 animation.CrossFade("choice4", 0.5f);
             }
         }
+
     }
 
     void Teleportation(int _choice)//Obvious
     {
         if (!clicked[_choice])
         {
+            Player.GetComponent<player_lookat>().triggerdistance = 2;
             animation.CrossFade("teleportation", 1f);
             for (int i = 0; i < clicked.Length; i++)
             {
@@ -95,7 +98,8 @@ public class choices : MonoBehaviour {
     }
 
     void Start()//Obvious
-    {               
+    {
+        Player.GetComponent<player_lookat>().triggerdistance = 20;
         animation.CrossFade("hide", 0.2f);
         if (hidden)
         {
