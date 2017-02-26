@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 
 public class choices : MonoBehaviour {
-    //Before you take a look at my code - CrossFade > Play!!!! :)
+
     public GameObject Player;
     public GameObject TimeMachine;
     public GameObject[] Rooms = new GameObject[4]; //All the rooms  
