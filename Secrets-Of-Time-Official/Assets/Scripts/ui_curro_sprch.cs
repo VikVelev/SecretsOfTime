@@ -27,7 +27,7 @@ public class ui_curro_sprch : MonoBehaviour {
         }
         catch (System.Exception)
         {
-            Debug.Log("Index is -1. Don't mind me");
+           
         }
         
     }

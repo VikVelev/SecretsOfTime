@@ -1,13 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class pause : MonoBehaviour {
     public Camera MainCamera;
     public GameObject current_UI;
     public GameObject pause_UI;
     public GameObject player;
-    bool paused;
+    public bool paused;
+    public AudioMixerSnapshot[] snapshots;
 
     public void pausetoggle()
     {
@@ -18,7 +20,10 @@ public class pause : MonoBehaviour {
             pause_UI.GetComponent<Canvas>().enabled = true;           
             paused = true;
             Time.timeScale = 0;
-            
+            snapshots[4].TransitionTo(0f);
+            Cursor.visible = true;
+
+
         }
         else
         {            
@@ -26,8 +31,15 @@ public class pause : MonoBehaviour {
             current_UI.GetComponent<Canvas>().enabled = true;
             pause_UI.GetComponent<Canvas>().enabled = false;
             player.GetComponent<crosshair>().enabled = true;
-
+            if (player.GetComponent<choices>().Choice >= 0)
+            {
+                snapshots[player.GetComponent<choices>().Choice].TransitionTo(0f);
+            } else
+            {
+                snapshots[5].TransitionTo(0f);
+            }
             paused = false;
+            Cursor.visible = false;
 
         }
     }

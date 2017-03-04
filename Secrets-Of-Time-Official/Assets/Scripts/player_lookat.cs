@@ -18,10 +18,18 @@ public class player_lookat : MonoBehaviour
 
         if (Physics.Raycast(Raycast_pos, Camera.transform.forward, out rayhit, 1000))
         {
-            Debug.DrawRay(Camera.transform.position, Camera.transform.forward * 10, Color.red, float.PositiveInfinity);
+            //Debug.DrawRay(Camera.transform.position, Camera.transform.forward * 10, Color.red, float.PositiveInfinity);
             rayhit_obj = rayhit.collider.gameObject;
 
-            Debug.Log(rayhit_obj.name);
+            //Debug.Log(rayhit_obj.name);
+
+            if(rayhit_obj == rayhit_obj_old && rayhit_obj_old != null && rayhit.distance < triggerdistance)
+            {
+                rayhit_obj_old.SendMessageUpwards("OnLookOn", null, SendMessageOptions.DontRequireReceiver);
+                Debug.Log("Opening.");
+
+            }
+
             if (rayhit_obj != rayhit_obj_old && rayhit_obj_old != null || rayhit.distance > triggerdistance)
             {
                 rayhit_obj_old.SendMessageUpwards("OnLookOff", null, SendMessageOptions.DontRequireReceiver);

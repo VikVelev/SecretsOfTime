@@ -13,6 +13,9 @@ public class choices : MonoBehaviour {
     public float Timer = 0;//Timer for hiding the time machine after an inactive period of time.
     bool hidden = true; //bool that checks if it's hidden
     public int Choice = -1; //-1 - Start Room (You can't go back there) 0 - 1950, 1 - 1980, 2 - 2000, 3 - 2017
+    public ParticleSystem parts;
+    public int times_showed = 0;
+    public GameObject script_ref;
 
     public Vector3 GetPosition(GameObject _Object)//Obvious
     {
@@ -31,8 +34,11 @@ public class choices : MonoBehaviour {
 
     public void Hide(GameObject object_)//Obvious
     {
+        if(times_showed != 0) {parts.Play();}
+        
         object_.SetActive(Toggle(hidden));
         hidden = Toggle(hidden);
+        times_showed++;
     }
 
     public bool Toggle(bool _toggle)//Obvious
@@ -55,6 +61,7 @@ public class choices : MonoBehaviour {
         {
             if (!hidden)
             {
+
                 Hide(TimeMachine);
             }
             else
@@ -76,7 +83,7 @@ public class choices : MonoBehaviour {
 
     }
 
-    void Teleportation(int _choice)//Obvious
+    void Teleportation(int _choice)
     {
         if (!clicked[_choice])
         {
@@ -89,26 +96,26 @@ public class choices : MonoBehaviour {
             SetTimer(10);           
             Player.transform.position = Rooms[_choice].transform.position;
             clicked[Choice] = true;
+            script_ref.SendMessageUpwards("CameraTour", Choice, SendMessageOptions.DontRequireReceiver);
         }
     }
 
-    void Awake()//Obvious
+    void Awake()
     {
         animation = TimeMachine.GetComponent<Animation>();
-    }
-
-    void Start()//Obvious
-    {
-        Player.GetComponent<player_lookat>().triggerdistance = 20;
-        animation.CrossFade("hide", 0.2f);
         if (hidden)
         {
             Hide(TimeMachine);
-            Debug.Log("hidden");
-        }      
+        }
     }
 
-    void Update()//Obvious
+    void Start()
+    {
+        Player.GetComponent<player_lookat>().triggerdistance = 20;
+            
+    }
+
+    void Update()
     {
         Timer -= Time.deltaTime;// Timer
 
@@ -119,6 +126,7 @@ public class choices : MonoBehaviour {
 
         if(Timer <= 0)
         {
+                  
                   Hide(TimeMachine);          
         }
 
