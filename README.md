@@ -1,5 +1,9 @@
 Secrets of Time!
 
-An educational game about traveling through time and experiencing the technology evolution throughout the years.
+An educational interactive application about traveling through time and experiencing the technology evolution throughout the years.
 
-Using: Unity, C#, Cinema4D, 3DSmax, Photoshop
+It is available for download at (since GitHub doesn't support large files) :
+
+*insert link when done here*
+
+Using: Unity, C#, Cinema4D,  Photoshop, Audacity, Bosca Ceoil
