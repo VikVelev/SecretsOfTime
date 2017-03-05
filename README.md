@@ -4,6 +4,6 @@ An educational interactive application about traveling through time and experien
 
 It is available for download at (since GitHub doesn't support large files) :
 
-*insert link when done here*
+https://drive.google.com/open?id=0B5jlLfQwYn1Adi1wZHBDWkFlRUE 
 
 Using: Unity, C#, Cinema4D,  Photoshop, Audacity, Bosca Ceoil
