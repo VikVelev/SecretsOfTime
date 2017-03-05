@@ -26,19 +26,14 @@ public class player_lookat : MonoBehaviour
             if(rayhit_obj == rayhit_obj_old && rayhit_obj_old != null && rayhit.distance < triggerdistance)
             {
                 rayhit_obj_old.SendMessageUpwards("OnLookOn", null, SendMessageOptions.DontRequireReceiver);
-                Debug.Log("Opening.");
-
-            }
-
-            if (rayhit_obj != rayhit_obj_old && rayhit_obj_old != null || rayhit.distance > triggerdistance)
-            {
-                rayhit_obj_old.SendMessageUpwards("OnLookOff", null, SendMessageOptions.DontRequireReceiver);
-                Debug.Log("Closing Canvas...");
             }
             if (rayhit_obj != rayhit_obj_old && rayhit.distance < triggerdistance)
             {
                 rayhit_obj.SendMessageUpwards("OnLookOn", null, SendMessageOptions.DontRequireReceiver);
-                Debug.Log("Opening Canvas...");
+            }
+            if (rayhit_obj != rayhit_obj_old && rayhit_obj_old != null || rayhit.distance > triggerdistance)
+            {
+                rayhit_obj_old.SendMessageUpwards("OnLookOff", null, SendMessageOptions.DontRequireReceiver);
             }
 
             rayhit_obj_old = rayhit_obj;

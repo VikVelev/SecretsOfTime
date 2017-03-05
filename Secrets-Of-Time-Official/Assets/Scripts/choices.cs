@@ -15,7 +15,8 @@ public class choices : MonoBehaviour {
     public int Choice = -1; //-1 - Start Room (You can't go back there) 0 - 1950, 1 - 1980, 2 - 2000, 3 - 2017
     public ParticleSystem parts;
     public int times_showed = 0;
-    public GameObject script_ref;
+    public ParticleSystem particles;
+    public AudioSource tel_effect;
 
     public Vector3 GetPosition(GameObject _Object)//Obvious
     {
@@ -35,7 +36,6 @@ public class choices : MonoBehaviour {
     public void Hide(GameObject object_)//Obvious
     {
         if(times_showed != 0) {parts.Play();}
-        
         object_.SetActive(Toggle(hidden));
         hidden = Toggle(hidden);
         times_showed++;
@@ -87,16 +87,27 @@ public class choices : MonoBehaviour {
     {
         if (!clicked[_choice])
         {
-            Player.GetComponent<player_lookat>().triggerdistance = 2;
-            animation.CrossFade("teleportation", 1f);
-            for (int i = 0; i < clicked.Length; i++)
+            tel_effect.Play();   
+            if (!particles.isPlaying)
             {
-                clicked[i] = false;//Equilibrium!
+                particles.Play();
+
             }
-            SetTimer(10);           
-            Player.transform.position = Rooms[_choice].transform.position;
-            clicked[Choice] = true;
-            script_ref.SendMessageUpwards("CameraTour", Choice, SendMessageOptions.DontRequireReceiver);
+            else
+            {
+            
+                particles.Stop();
+                particles.Play();
+            }
+            Player.GetComponent<player_lookat>().triggerdistance = 2;
+                animation.CrossFade("teleportation", 1f);
+                for (int i = 0; i < clicked.Length; i++)
+                {
+                    clicked[i] = false;//Equilibrium!
+                }
+                SetTimer(10);
+                Player.transform.position = Rooms[_choice].transform.position;
+                clicked[Choice] = true;
         }
     }
 
@@ -138,7 +149,7 @@ public class choices : MonoBehaviour {
             }
             catch (Exception)
             {
-                Debug.Log("Your choice is invalid.");
+                
             }           
         }
         if (Input.GetKeyDown(KeyCode.Mouse1))
