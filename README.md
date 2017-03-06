@@ -14,7 +14,6 @@ https://drive.google.com/open?id=0B5jlLfQwYn1Adi1wZHBDWkFlRUE
 2. Пускане на .exe файла.
 3. Have fun!
 
-/////////////////////////ENGLISH////////////////////////////////////////
 
 
 Secrets of Time!
