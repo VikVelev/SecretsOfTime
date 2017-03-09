@@ -12,6 +12,7 @@ public class sound : MonoBehaviour {
     public bool isAudioOn;
 
 	void Update () {
+
         if (Sound.isOn)
         {
             Checkmark.GetComponent<Image>().sprite = On_Off[0];

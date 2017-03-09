@@ -23,7 +23,7 @@ public class player_lookat : MonoBehaviour
 
             //Debug.Log(rayhit_obj.name);
 
-            if(rayhit_obj == rayhit_obj_old && rayhit_obj_old != null && rayhit.distance < triggerdistance)
+            if (rayhit_obj == rayhit_obj_old && rayhit_obj_old != null && rayhit.distance < triggerdistance)
             {
                 rayhit_obj_old.SendMessageUpwards("OnLookOn", null, SendMessageOptions.DontRequireReceiver);
             }

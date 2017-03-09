@@ -91,11 +91,9 @@ public class choices : MonoBehaviour {
             if (!particles.isPlaying)
             {
                 particles.Play();
-
             }
             else
             {
-            
                 particles.Stop();
                 particles.Play();
             }
