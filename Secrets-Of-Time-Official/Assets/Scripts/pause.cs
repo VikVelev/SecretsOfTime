@@ -22,6 +22,8 @@ public class pause : MonoBehaviour {
             Time.timeScale = 0;
             snapshots[4].TransitionTo(0f);
             Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+
 
 
         }
@@ -40,6 +42,8 @@ public class pause : MonoBehaviour {
             }
             paused = false;
             Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+
 
         }
     }
@@ -55,5 +59,6 @@ public class pause : MonoBehaviour {
     void Awake()
     {
         Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 }
