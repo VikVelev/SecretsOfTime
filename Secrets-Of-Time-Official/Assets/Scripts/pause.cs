@@ -51,4 +51,9 @@ public class pause : MonoBehaviour {
             pausetoggle();
         }
     }
+
+    void Awake()
+    {
+        Cursor.visible = false;
+    }
 }
