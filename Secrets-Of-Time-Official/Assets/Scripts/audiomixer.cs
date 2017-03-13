@@ -8,7 +8,8 @@ public class audiomixer : MonoBehaviour
     public AudioMixerSnapshot[] songs;
     public GameObject refs;
     public float bpm = 128;
-    int choice__;
+    public int choice__;
+    public GameObject[] interaction;
 
 
     private float m_TransitionIn;
@@ -29,8 +30,12 @@ public class audiomixer : MonoBehaviour
         if (other.name == "FPSController")
         {
             songs[choice__].TransitionTo(m_TransitionIn);
-        }
-       
+                if (interaction[choice__].GetComponent<tv_interaction>().isTVon)
+                {
+                    songs[choice__ + 4].TransitionTo(1f);
+                }
+               
+            }      
     }
 
     void OnTriggerExit(Collider other)

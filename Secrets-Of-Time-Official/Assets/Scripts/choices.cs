@@ -17,6 +17,7 @@ public class choices : MonoBehaviour {
     public int times_showed = 0;
     public ParticleSystem particles;
     public AudioSource tel_effect;
+    public GameObject Pause_ref;
 
     public Vector3 GetPosition(GameObject _Object)//Obvious
     {
@@ -126,39 +127,42 @@ public class choices : MonoBehaviour {
 
     void Update()
     {
-        Timer -= Time.deltaTime;// Timer
-
-        if (!hidden)
+        if (!Pause_ref.GetComponent<pause>().paused)
         {
-            SetTimer(10);
-        }
+            Timer -= Time.deltaTime;// Timer
 
-        if(Timer <= 0)
-        {
-                  
-                  Hide(TimeMachine);          
-        }
-
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            try
+            if (!hidden)
             {
-                Teleportation(Choice);
+                SetTimer(10);
             }
-            catch (Exception)
+
+            if (Timer <= 0)
             {
-                
-            }           
+
+                Hide(TimeMachine);
+            }
+
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                try
+                {
+                    Teleportation(Choice);
+                }
+                catch (Exception)
+                {
+
+                }
+            }
+            if (Input.GetKeyDown(KeyCode.Mouse1))
+            {
+                Choose();
+            }
+            if (!animation.isPlaying)
+            {
+                animation.CrossFade("time_machine_idle", 0.5f);
+            }
+            //Debug.Log(Math.Ceiling(Timer) + " secs");
         }
-        if (Input.GetKeyDown(KeyCode.Mouse1))
-        {
-            Choose();
-        }
-        if (!animation.isPlaying)
-        {
-            animation.CrossFade("time_machine_idle", 0.5f);
-        }
-        //Debug.Log(Math.Ceiling(Timer) + " secs");
     }
 }
 

@@ -23,9 +23,13 @@ public class player_lookat : MonoBehaviour
 
             //Debug.Log(rayhit_obj.name);
 
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                rayhit_obj.SendMessageUpwards("Interaction", null, SendMessageOptions.DontRequireReceiver);
+            }
             if (rayhit_obj == rayhit_obj_old && rayhit_obj_old != null && rayhit.distance < triggerdistance)
             {
-                rayhit_obj_old.SendMessageUpwards("OnLookOn", null, SendMessageOptions.DontRequireReceiver);
+                rayhit_obj.SendMessageUpwards("OnLookOn", null, SendMessageOptions.DontRequireReceiver);
             }
             if (rayhit_obj != rayhit_obj_old && rayhit.distance < triggerdistance)
             {

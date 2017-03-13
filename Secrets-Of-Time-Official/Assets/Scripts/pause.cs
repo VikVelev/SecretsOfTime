@@ -10,6 +10,9 @@ public class pause : MonoBehaviour {
     public GameObject player;
     public bool paused;
     public AudioMixerSnapshot[] snapshots;
+    public MovieTexture[] movie_tex;
+    public bool moviewasplaying = false;
+    public GameObject[] interaction;
 
     public void pausetoggle()
     {
@@ -23,9 +26,14 @@ public class pause : MonoBehaviour {
             snapshots[4].TransitionTo(0f);
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
-
-
-
+            if (player.GetComponent<choices>().Choice >= 0)
+            {
+                if (movie_tex[player.GetComponent<choices>().Choice].isPlaying)
+                {
+                    movie_tex[player.GetComponent<choices>().Choice].Pause();
+                    moviewasplaying = true;
+                }
+            }
         }
         else
         {            
@@ -33,17 +41,28 @@ public class pause : MonoBehaviour {
             current_UI.GetComponent<Canvas>().enabled = true;
             pause_UI.GetComponent<Canvas>().enabled = false;
             player.GetComponent<crosshair>().enabled = true;
+
             if (player.GetComponent<choices>().Choice >= 0)
             {
-                snapshots[player.GetComponent<choices>().Choice].TransitionTo(0f);
+                if (interaction[player.GetComponent<choices>().Choice].GetComponent<tv_interaction>().isTVon)
+                {
+                    snapshots[player.GetComponent<choices>().Choice + 6].TransitionTo(1f);
+                } else
+                {
+                    snapshots[player.GetComponent<choices>().Choice].TransitionTo(0f);
+                }
             } else
             {
                 snapshots[5].TransitionTo(0f);
             }
+            if (moviewasplaying)
+            {
+                movie_tex[player.GetComponent<choices>().Choice].Play();
+                moviewasplaying = false;
+            }
             paused = false;
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
-
 
         }
     }
