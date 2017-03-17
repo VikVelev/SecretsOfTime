@@ -104,7 +104,16 @@ public class terminal : MonoBehaviour {
                 }
                 else if (command == "help")
                 {
-                    AddText("Available Commands: dir, clear, help");
+                    AddText("Available Commands: dir, clear, help, shutdown, uptime");
+                }
+                else if(command == "shutdown")
+                {
+                    output.text = "";
+                    Interaction();
+                }
+                else if(command == "uptime")
+                {
+                    AddText("Since the begining");
                 }
                 else
                 {
@@ -114,10 +123,7 @@ public class terminal : MonoBehaviour {
             {
                 AddText("Your command is too long.");
             }
-
-
         }
-
         if(terminal_on && Input.GetButton("Cancel"))
         {
             Interaction();
