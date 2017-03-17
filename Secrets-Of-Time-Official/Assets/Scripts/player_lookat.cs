@@ -7,7 +7,7 @@ public class player_lookat : MonoBehaviour
 
     public GameObject Camera;
     GameObject rayhit_obj_old;
-    GameObject rayhit_obj;
+    public GameObject rayhit_obj;
     RaycastHit rayhit;
     Vector3 Raycast_pos;
     public int triggerdistance;
