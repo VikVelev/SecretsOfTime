@@ -10,6 +10,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
     [RequireComponent(typeof (AudioSource))]
     public class FirstPersonController : MonoBehaviour
     {
+        public bool Crouched;
+
         [SerializeField] private bool m_IsWalking;
         [SerializeField] private float m_WalkSpeed;
         [SerializeField] private float m_RunSpeed;
@@ -57,12 +59,27 @@ namespace UnityStandardAssets.Characters.FirstPerson
 			m_MouseLook.Init(transform , m_Camera.transform);
         }
 
+        void Crouch()
+        {
+            if (Input.GetKeyDown(KeyCode.LeftControl))
+            {
+                m_CharacterController.height /= 2;
+                Crouched = true;
+            }
+            else if (Input.GetKeyUp(KeyCode.LeftControl))
+            {
+                m_CharacterController.height = 1.8f;
+                Crouched = false;
+            }
+        }
 
         // Update is called once per frame
         private void Update()
         {
             RotateView();
+            Crouch();
             // the jump state needs to read here to make sure it is not missed
+
             if (!m_Jump)
             {
                 m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
@@ -255,5 +272,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }
             body.AddForceAtPosition(m_CharacterController.velocity*0.1f, hit.point, ForceMode.Impulse);
         }
+
+
+
     }
 }

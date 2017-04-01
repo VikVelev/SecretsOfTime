@@ -6,52 +6,45 @@ using UnityEngine.Audio;
 public class audiomixer : MonoBehaviour
 {
     public AudioMixerSnapshot[] songs;
+    public AudioMixerSnapshot[] tv_sound;
     public GameObject refs;
-    public float bpm = 128;
-    public int choice__;
     public GameObject[] interaction;
+    public int choice_;
 
+    choices choices_r;
 
-    private float m_TransitionIn;
-    private float m_TransitionOut;
-    private float m_QuarterNote;
-
-    // Use this for initialization
-    void Start()
+    int n;
+    
+    private void Start()
     {
-        m_QuarterNote = 60 / bpm;
-        m_TransitionIn = m_QuarterNote;
-        m_TransitionOut = m_QuarterNote * 32;
-
+        choices_r = refs.GetComponent<choices>();
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.name == "FPSController")
+        if (other.tag == "Player")
         {
-            songs[choice__].TransitionTo(m_TransitionIn);
-                if (interaction[choice__].GetComponent<tv_interaction>().isTVon)
-                {
-                    songs[choice__ + 4].TransitionTo(1f);
-                }
-               
-            }      
+            if (interaction[choice_].GetComponent<tv_interaction>().isTVon)
+            {
+                tv_sound[choice_].TransitionTo(1f);
+            }
+            else
+            {
+                songs[choice_].TransitionTo(1f);
+            }            
+          }      
     }
 
     void OnTriggerExit(Collider other)
-    {
-        if (other.name == "FPSController")
+    {    
+        if (other.tag == "Player")
         {
-            songs[choice__].TransitionTo(m_TransitionOut);
-        }
-        
+            songs[choices_r.GetRoom()].TransitionTo(1f);
+        }        
     }
 
     void Update()
     {
-
-        choice__ = refs.GetComponent<choices>().Choice;
+        choice_ = choices_r.Choice;
     }
-
-
 }

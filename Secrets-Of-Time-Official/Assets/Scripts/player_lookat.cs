@@ -20,7 +20,7 @@ public class player_lookat : MonoBehaviour
         {
             //Debug.DrawRay(Camera.transform.position, Camera.transform.forward * 10, Color.red, float.PositiveInfinity);
             rayhit_obj = rayhit.collider.gameObject;
-
+            
             //Debug.Log(rayhit_obj.name);
 
             if (Input.GetKeyDown(KeyCode.E))

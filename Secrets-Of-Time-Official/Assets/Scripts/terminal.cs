@@ -6,6 +6,9 @@ using UnityStandardAssets.Characters.FirstPerson;
 
 public class terminal : MonoBehaviour {
 
+    public Camera character_camera;
+    public GameObject Display;
+    public CharacterController character;
     public Canvas terminal_start;
     public Text output;
     public GameObject player;
@@ -16,40 +19,61 @@ public class terminal : MonoBehaviour {
     string command;
     int lines = 0;
     public GameObject[] disable;
+    Vector3 cam_pos;
+    Quaternion cam_rot;
     
 
     public void Interaction()
     {
         if (!terminal_on)
         {
+            cam_pos = character_camera.transform.position;
+            cam_rot = character_camera.transform.rotation;
+
             for (int i = 0; i < disable.Length; i++)
             {
                 disable[i].SetActive(false);
             }
+
             terminal_start.GetComponent<Canvas>().enabled = true;
+
             player.GetComponent<FirstPersonController>().enabled = false;
             player.GetComponent<pause>().enabled = false;
             player.GetComponent<crosshair>().enabled = false;
             player.GetComponent<player_lookat>().enabled = false;
+
             Cursor.lockState = CursorLockMode.Locked;
+            character.enabled = false;
+
+            character_camera.transform.position = Display.transform.position;
+            character_camera.transform.rotation = Display.transform.rotation;
+
             //Cursor.visible = true;
             //Cursor.lockState = CursorLockMode.None;
             input_field.ActivateInputField();
+
             terminal_on = true;
 
         } else
         {
             //Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
-            terminal_start.GetComponent<Canvas>().enabled = false;
+            terminal_start.GetComponent<Canvas>().enabled = true;
+
             player.GetComponent<pause>().enabled = true;
             player.GetComponent<FirstPersonController>().enabled = true;
             player.GetComponent<crosshair>().enabled = true;
             player.GetComponent<player_lookat>().enabled = true;
+            character.enabled = true;
+
+            character_camera.transform.position = cam_pos;
+            character_camera.transform.rotation = cam_rot;
+
             for (int i = 0; i < disable.Length; i++)
             {
                 disable[i].SetActive(true);
             }
+
             terminal_on = false;
         }
     }

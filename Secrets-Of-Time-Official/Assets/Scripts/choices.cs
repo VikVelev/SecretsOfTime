@@ -9,9 +9,9 @@ public class choices : MonoBehaviour {
     public GameObject TimeMachine;
     public GameObject[] Rooms = new GameObject[4]; //All the rooms  
     public bool[] clicked = new bool[4]; //Array that checks if you're in e certain room
-    new Animation animation;
+    Animation animation_;
     public float Timer = 0;//Timer for hiding the time machine after an inactive period of time.
-    bool hidden = true; //bool that checks if it's hidden
+    public bool hidden = true; //bool that checks if it's hidden
     public int Choice = -1; //-1 - Start Room (You can't go back there) 0 - 1950, 1 - 1980, 2 - 2000, 3 - 2017
     public ParticleSystem parts;
     public int times_showed = 0;
@@ -19,22 +19,22 @@ public class choices : MonoBehaviour {
     public AudioSource tel_effect;
     public GameObject Pause_ref;
 
-    public Vector3 GetPosition(GameObject _Object)//Obvious
+    public Vector3 GetPosition(GameObject _Object)
     {
         return _Object.transform.position;
     }
 
-    public Quaternion GetRotation(GameObject _Object)//Obvious
+    public Quaternion GetRotation(GameObject _Object)
     {
         return _Object.transform.rotation;
     }
     
-    void SetTimer(float _num)//Obvious
+    void SetTimer(float _num)
     {
         Timer = _num;
     }
 
-    public void Hide(GameObject object_)//Obvious
+    public void Hide(GameObject object_)
     {
         if(times_showed != 0) {parts.Play();}
         object_.SetActive(Toggle(hidden));
@@ -42,7 +42,7 @@ public class choices : MonoBehaviour {
         times_showed++;
     }
 
-    public bool Toggle(bool _toggle)//Obvious
+    public bool Toggle(bool _toggle)
     {
         if (!_toggle)
         {
@@ -55,14 +55,37 @@ public class choices : MonoBehaviour {
         return _toggle;
     }
 
-    void Choose()//Obvious
+    public int GetRoom() //Gets the room you are currently in.
     {
-        
-        if (!animation.isPlaying || animation.IsPlaying("time_machine_idle"))
+        int n = 0;
+        try
+        {
+            if (clicked[Choice])
+            {
+            return Choice;
+            }
+            else 
+            {
+               n = 0;        
+                while (!clicked[n])
+                {
+                    n++;
+                }            
+            return n;
+            }
+        }
+        catch (Exception)
+        {
+            return -1;
+        }
+    }
+
+    void Choose()
+    {       
+        if (!animation_.isPlaying || animation_.IsPlaying("time_machine_idle"))
         {
             if (!hidden)
             {
-
                 Hide(TimeMachine);
             }
             else
@@ -71,17 +94,16 @@ public class choices : MonoBehaviour {
             }
             Choice++;
             
-            if (Choice == 1) animation.CrossFade("choice1", 0.5f);
-            if (Choice == 2) animation.CrossFade("choice2", 0.5f);
-            if (Choice == 3) animation.CrossFade("choice3", 0.5f);
-            if (Choice == 0) animation.CrossFade("choice4", 0.5f);
+            if (Choice == 1) animation_.CrossFade("choice1", 0.5f);
+            if (Choice == 2) animation_.CrossFade("choice2", 0.5f);
+            if (Choice == 3) animation_.CrossFade("choice3", 0.5f);
+            if (Choice == 0) animation_.CrossFade("choice4", 0.5f);
             if (Choice == Rooms.Length)
             {
                 Choice = 0;
-                animation.CrossFade("choice4", 0.5f);
+                animation_.CrossFade("choice4", 0.5f);
             }
         }
-
     }
 
     void Teleportation(int _choice)
@@ -98,8 +120,8 @@ public class choices : MonoBehaviour {
                 particles.Stop();
                 particles.Play();
             }
-            Player.GetComponent<player_lookat>().triggerdistance = 2;
-                animation.CrossFade("teleportation", 1f);
+            Player.GetComponent<player_lookat>().triggerdistance = 3;
+                animation_.CrossFade("teleportation", 1f);
                 for (int i = 0; i < clicked.Length; i++)
                 {
                     clicked[i] = false;//Equilibrium!
@@ -112,24 +134,25 @@ public class choices : MonoBehaviour {
 
     void Awake()
     {
-        animation = TimeMachine.GetComponent<Animation>();
+        animation_ = TimeMachine.GetComponent<Animation>();
         if (hidden)
         {
             Hide(TimeMachine);
         }
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Start()
     {
-        Player.GetComponent<player_lookat>().triggerdistance = 20;
-            
+        Player.GetComponent<player_lookat>().triggerdistance = 20;      
     }
 
     void Update()
     {
         if (!Pause_ref.GetComponent<pause>().paused)
         {
-            Timer -= Time.deltaTime;// Timer
+            Timer -= Time.deltaTime; // Timer
 
             if (!hidden)
             {
@@ -150,18 +173,17 @@ public class choices : MonoBehaviour {
                 }
                 catch (Exception)
                 {
-
+                   
                 }
             }
             if (Input.GetKeyDown(KeyCode.Mouse1))
             {
                 Choose();
             }
-            if (!animation.isPlaying)
+            if (!animation_.isPlaying)
             {
-                animation.CrossFade("time_machine_idle", 0.5f);
+                animation_.CrossFade("time_machine_idle", 0.5f);
             }
-            //Debug.Log(Math.Ceiling(Timer) + " secs");
         }
     }
 }
