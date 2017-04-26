@@ -10,10 +10,7 @@ public class audiomixer : MonoBehaviour
     public GameObject refs;
     public GameObject[] interaction;
     public int choice_;
-
     choices choices_r;
-
-    int n;
     
     private void Start()
     {

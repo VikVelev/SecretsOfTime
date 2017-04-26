@@ -35,12 +35,12 @@ public class windows_xp : MonoBehaviour {
             {
                 disable[i].SetActive(false);
             }
-
-            player.GetComponent<FirstPersonController>().enabled = false;
-            player.GetComponent<pause>().enabled = false;
-            player.GetComponent<choices>().enabled = false;
-            player.GetComponent<crosshair>().enabled = false;
-            player.GetComponent<player_lookat>().enabled = false;
+            //a=b=c=d=false
+            player.GetComponent<FirstPersonController>().enabled =
+            player.GetComponent<pause>().enabled = 
+            player.GetComponent<choices>().enabled = 
+            player.GetComponent<crosshair>().enabled =
+            player.GetComponent<player_lookat>().enabled =
             character.enabled = false;
             character_camera.transform.position = Display.transform.position;
             character_camera.transform.rotation = Display.transform.rotation;
@@ -53,11 +53,11 @@ public class windows_xp : MonoBehaviour {
         {
             //Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
-            player.GetComponent<pause>().enabled = true;
-            player.GetComponent<choices>().enabled = true;
-            player.GetComponent<FirstPersonController>().enabled = true;
-            player.GetComponent<crosshair>().enabled = true;
-            player.GetComponent<player_lookat>().enabled = true;
+            player.GetComponent<pause>().enabled = 
+            player.GetComponent<choices>().enabled = 
+            player.GetComponent<FirstPersonController>().enabled = 
+            player.GetComponent<crosshair>().enabled = 
+            player.GetComponent<player_lookat>().enabled = 
             character.enabled = true;
             character_camera.transform.position = cam_pos;
             character_camera.transform.rotation = cam_rot;
@@ -65,7 +65,7 @@ public class windows_xp : MonoBehaviour {
             {
                 disable[i].SetActive(true);
             }
-            computer_on = false;
+            computer_on =
             Cursor.visible = false;
         }
     }

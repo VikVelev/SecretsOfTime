@@ -60,19 +60,11 @@ public class choices : MonoBehaviour {
         int n = 0;
         try
         {
-            if (clicked[Choice])
-            {
-            return Choice;
-            }
+            if (clicked[Choice]) return Choice;
             else 
-            {
-               n = 0;        
-                while (!clicked[n])
-                {
-                    n++;
-                }            
+               n = 0;                           
+               while (!clicked[n]) n++;
             return n;
-            }
         }
         catch (Exception)
         {
@@ -84,14 +76,9 @@ public class choices : MonoBehaviour {
     {       
         if (!animation_.isPlaying || animation_.IsPlaying("time_machine_idle"))
         {
-            if (!hidden)
-            {
-                Hide(TimeMachine);
-            }
-            else
-            {
-                SetTimer(10);
-            }
+            if (!hidden) Hide(TimeMachine);
+            else SetTimer(10);
+
             Choice++;
             
             if (Choice == 1) animation_.CrossFade("choice1", 0.5f);
@@ -150,20 +137,14 @@ public class choices : MonoBehaviour {
 
     void Update()
     {
+        Debug.Log(GetRoom());
+
         if (!Pause_ref.GetComponent<pause>().paused)
         {
             Timer -= Time.deltaTime; // Timer
 
-            if (!hidden)
-            {
-                SetTimer(10);
-            }
-
-            if (Timer <= 0)
-            {
-
-                Hide(TimeMachine);
-            }
+            if (!hidden) SetTimer(10);
+            if (Timer <= 0) Hide(TimeMachine);
 
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {

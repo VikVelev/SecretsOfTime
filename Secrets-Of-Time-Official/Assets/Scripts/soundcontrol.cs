@@ -5,6 +5,7 @@ using UnityEngine.Audio;
 
 public class soundcontrol : MonoBehaviour {
     public float volume;
+    public float sensitivity = 3;
 
 	void Update () {
 
@@ -12,7 +13,7 @@ public class soundcontrol : MonoBehaviour {
 
         if (Input.GetAxis("Mouse ScrollWheel") != 0f)
         {
-            volume += Input.GetAxis("Mouse ScrollWheel")/3;
+            volume += Input.GetAxis("Mouse ScrollWheel")/sensitivity;
 
             if(volume > 1f)
             {

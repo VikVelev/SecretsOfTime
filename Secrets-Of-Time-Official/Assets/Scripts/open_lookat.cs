@@ -10,10 +10,13 @@ public class open_lookat : MonoBehaviour{
 
     public void OnLookOn()
     {
-        Canvas.GetComponent<Canvas>().enabled = true;       
-        if (IsInteractive)
+        if (!Canvas.GetComponent<Canvas>().enabled)
         {
-            Interaction_Canvas.GetComponent<Canvas>().enabled = true;
+            Canvas.GetComponent<Canvas>().enabled = true;
+            if (IsInteractive)
+            {
+                Interaction_Canvas.GetComponent<Canvas>().enabled = true;
+            }
         }
     }
 
