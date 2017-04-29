@@ -13,6 +13,7 @@ public class pause : MonoBehaviour
     public GameObject player;
     public bool paused;
     public AudioMixerSnapshot mute;
+    public AudioMixerSnapshot null_room;
     public MovieTexture[] movie_tex;
     public bool moviewasplaying = false;
     public GameObject[] interaction;
@@ -77,13 +78,16 @@ public class pause : MonoBehaviour
             {
                 audio_.tv_sound[choice_re.Choice].TransitionTo(0f);
 
-            } else if (choice_re.GetRoom() == 0 || choice_re.GetRoom() == 1)
-            {
+            } else if ((choice_re.GetRoom() == 0 || choice_re.GetRoom() == 1) && musicplayer[choice_re.GetRoom()].isMusicOn)
+            {               
                 audio_.other_sounds[choice_re.GetRoom()].TransitionTo(1f);
 
-            } else
+            } else if(choice_re.GetRoom() > -1)
             {
                 audio_.songs[choice_re.GetRoom()].TransitionTo(0f);
+            } else
+            {
+                null_room.TransitionTo(1f);
             }
 
 

@@ -14,6 +14,7 @@ namespace UnityStandardAssets.ImageEffects
         public GameObject from;
         public float aperture = 0.5f;
         public Transform focalTransform = null;
+        public Transform focalTransform2 = null;
         public float maxBlurSize = 2.0f;
         public bool  highResolution = false;
 
@@ -54,6 +55,7 @@ namespace UnityStandardAssets.ImageEffects
         public float dx11BokehIntensity = 2.5f;
 
         private float focalDistance01 = 10.0f;
+        private float focalDistance02 = 10.0f;
         private ComputeBuffer cbDrawArgs;
         private ComputeBuffer cbPoints;
         private float internalBlurWidth = 1.0f;
@@ -154,12 +156,15 @@ namespace UnityStandardAssets.ImageEffects
 
         void Update()
         {
-            Raycast_pos = from.transform.position;
-
-            if(Physics.Raycast(Raycast_pos, from.transform.forward, out rayhit, 1000))
+            if (from != null)
             {
-                rayhit_obj = rayhit.collider.gameObject;
-                focalTransform = rayhit_obj.transform;
+                Raycast_pos = from.transform.position;
+
+                if (Physics.Raycast(Raycast_pos, from.transform.forward, out rayhit, 1000))
+                {
+                    rayhit_obj = rayhit.collider.gameObject;
+                    focalTransform = rayhit_obj.transform;
+                }
             }
         }
 
@@ -180,6 +185,7 @@ namespace UnityStandardAssets.ImageEffects
 
             focalDistance01 = (focalTransform) ? (cachedCamera.WorldToViewportPoint (focalTransform.position)).z / (cachedCamera.farClipPlane) : FocalDistance01 (focalLength);
             dofHdrMaterial.SetVector("_CurveParams", new Vector4(1.0f, focalSize, (1.0f / (1.0f - aperture) - 1.0f), focalDistance01));
+
 
             // possible render texture helpers
 

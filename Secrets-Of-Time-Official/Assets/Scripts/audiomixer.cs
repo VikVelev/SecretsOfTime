@@ -28,6 +28,7 @@ public class audiomixer : MonoBehaviour
             if (interaction[choice_].GetComponent<tv_interaction>().isTVon)
             {
                 tv_sound[choice_].TransitionTo(1f);
+
             } else if (choices_r.GetRoom() == 1 || choices_r.GetRoom() == 0)
             {
                 if (music.isMusicOn)
