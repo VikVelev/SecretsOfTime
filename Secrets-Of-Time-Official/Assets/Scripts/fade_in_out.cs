@@ -11,10 +11,6 @@ public class fade_in_out : MonoBehaviour {
     public Canvas root;
     public float fade_time = 0.1f;
 
-    void Start () {
- 
-    }
-
     void Update()
     {
             if (!root.GetComponent<Canvas>().enabled)
@@ -90,8 +86,6 @@ public class fade_in_out : MonoBehaviour {
                     img[i].CrossFadeAlpha(1f, fade_time, false);
                 }
             }
-        }
-
-        
+        }        
     }
 }

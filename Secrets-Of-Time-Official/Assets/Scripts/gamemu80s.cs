@@ -37,7 +37,7 @@ public class gamemu80s : MonoBehaviour {
         Emulator = new Emulator(drawable, audio, saveMemory);
         ScreenRenderer.material.mainTexture = ((DefaultVideoOutput)Emulator.Video).Texture;
 
-        gameObject.GetComponent<AudioSource>().enabled = true;
+        GetComponent<AudioSource>().enabled = true;
 
         StartCoroutine(LoadRom(Filename));
     }
@@ -131,7 +131,7 @@ public class gamemu80s : MonoBehaviour {
             }
             catch (System.Exception e)
             {
-                Debug.Log("Couldn't load data file.");
+                Debug.Log("Shit");
                 Debug.Log(e.Message);
             }
         }

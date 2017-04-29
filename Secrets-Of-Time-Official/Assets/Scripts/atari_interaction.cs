@@ -16,6 +16,7 @@ public class atari_interaction : MonoBehaviour {
     public GameObject emu_renderer;
     public audiomixer adm;
     public tv_interaction tv;
+    public musicplayers music;
     
 
     //used for storing positions and rotations
@@ -98,7 +99,16 @@ public class atari_interaction : MonoBehaviour {
             //Turns off
             emu_renderer.GetComponent<MeshRenderer>().enabled = false;
 
-            adm.songs[char_choice.GetRoom()].TransitionTo(1f);
+            if (music.isMusicOn)
+            {
+                adm.other_sounds[1].TransitionTo(1f);
+            } else if (tv.isTVon)
+            {
+                adm.tv_sound[char_choice.GetRoom()].TransitionTo(1f);
+            } else
+            {
+                adm.songs[char_choice.GetRoom()].TransitionTo(1f);
+            }
 
             Cursor.lockState = CursorLockMode.Locked;
 
@@ -110,7 +120,7 @@ public class atari_interaction : MonoBehaviour {
 
         if (!isAtariOn && !tv.isTVon && char_choice.GetRoom() == 1)
         {
-            adm.songs[char_choice.GetRoom()].TransitionTo(1f);
+            //adm.songs[char_choice.GetRoom()].TransitionTo(1f);
         }
 
         if (isAtariOn && Input.GetButton("Cancel"))

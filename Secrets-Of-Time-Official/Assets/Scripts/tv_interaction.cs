@@ -12,8 +12,7 @@ public class tv_interaction : MonoBehaviour {
     public GameObject TV;
     public Material tvoff;
     public bool isTVon = false;
-
-     int n;
+    public musicplayers music;
 
     void Start()
     {
@@ -29,8 +28,24 @@ public class tv_interaction : MonoBehaviour {
         {
             movie_tex.Pause();
             movie_sound.Pause();
-                      
-            script_ref_audiomixer.songs[script_ref_player.GetRoom()].TransitionTo(1f);
+            if (music.isMusicOn)
+            {
+                if (script_ref_player.GetRoom() == 0)
+                {
+                    script_ref_audiomixer.other_sounds[0].TransitionTo(1f);
+                }
+                if (script_ref_player.GetRoom() == 1)
+                {
+                    script_ref_audiomixer.other_sounds[1].TransitionTo(1f);
+                }
+
+            } else
+            {
+                script_ref_audiomixer.songs[script_ref_player.GetRoom()].TransitionTo(1f);
+
+            }
+
+
 
             isTVon = false;
             TV.GetComponent<Renderer>().material = tvoff;

@@ -17,6 +17,7 @@ public class pause : MonoBehaviour
     public bool moviewasplaying = false;
     public GameObject[] interaction;
     public audiomixer audio_;
+    public musicplayers[] musicplayer;
 
     int n;
     choices choice_re;
@@ -71,13 +72,18 @@ public class pause : MonoBehaviour
             player.GetComponent<crosshair>().enabled = true;
 
             //Sound
+
             if (choice_re.GetRoom() >= 0 && interaction[choice_re.GetRoom()].GetComponent<tv_interaction>().isTVon)
             {
                 audio_.tv_sound[choice_re.Choice].TransitionTo(0f);
+            } else if (choice_re.GetRoom() == 0 || choice_re.GetRoom() == 1)
+            {
+                audio_.other_sounds[choice_re.GetRoom()].TransitionTo(1f);
             } else
             {
                 audio_.songs[choice_re.GetRoom()].TransitionTo(0f);
             }
+
 
             //Reenable TV if it was on
             if (moviewasplaying)
