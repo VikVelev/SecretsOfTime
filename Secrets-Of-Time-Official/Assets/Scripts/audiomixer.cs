@@ -23,6 +23,8 @@ public class audiomixer : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            songs[choice_].TransitionTo(1f); //Trust me, it makes sense. Idk why but it does.
+
             if (interaction[choice_].GetComponent<tv_interaction>().isTVon)
             {
                 tv_sound[choice_].TransitionTo(1f);
