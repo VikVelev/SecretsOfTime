@@ -55,7 +55,6 @@ namespace UnityStandardAssets.ImageEffects
         public float dx11BokehIntensity = 2.5f;
 
         private float focalDistance01 = 10.0f;
-        private float focalDistance02 = 10.0f;
         private ComputeBuffer cbDrawArgs;
         private ComputeBuffer cbPoints;
         private float internalBlurWidth = 1.0f;

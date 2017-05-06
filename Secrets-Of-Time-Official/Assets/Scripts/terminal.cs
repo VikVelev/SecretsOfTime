@@ -39,6 +39,7 @@ public class terminal : MonoBehaviour {
             //a=b=c=d=false
             player.GetComponent<FirstPersonController>().enabled = 
             player.GetComponent<pause>().enabled = 
+            player.GetComponent<choices>().enabled =
             player.GetComponent<crosshair>().enabled =
             player.GetComponent<player_lookat>().enabled = false;
 
@@ -62,10 +63,11 @@ public class terminal : MonoBehaviour {
 
             player.GetComponent<pause>().enabled = 
             player.GetComponent<FirstPersonController>().enabled =
+            player.GetComponent<choices>().enabled =
             player.GetComponent<crosshair>().enabled = 
             player.GetComponent<player_lookat>().enabled = 
             character.enabled = true;
-
+            Cursor.lockState = CursorLockMode.Locked;
             character_camera.transform.position = cam_pos;
             character_camera.transform.rotation = cam_rot;
 
@@ -92,6 +94,9 @@ public class terminal : MonoBehaviour {
 
     private void Update()
     {
+        if(terminal_on){
+            input_field.ActivateInputField();
+        }
         if (terminal_on && Input.GetButtonDown("Submit"))
         {
             if (input.text.Trim() != "" && input.text.Length < 40)
@@ -151,8 +156,7 @@ public class terminal : MonoBehaviour {
         if(terminal_on && Input.GetButton("Cancel"))
         {
             Interaction();
-            Cursor.lockState = CursorLockMode.Locked;
         }
+        
     }
-
 }
