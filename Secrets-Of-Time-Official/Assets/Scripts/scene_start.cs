@@ -5,7 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class scene_start : MonoBehaviour {
     public GameObject[] todisable;
-
+    void Start(){
+        Time.timeScale = 1;
+    }
     void ChangeScene()
     {
         SceneManager.LoadScene(1);

@@ -6,9 +6,7 @@ public class cube_rot : MonoBehaviour {
 
     void OnMouseDown()
     {
-
         GetComponent<Animation>().Play();
-        Debug.Log("Playing...");
     }
 
 }

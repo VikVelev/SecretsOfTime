@@ -27,7 +27,6 @@ using UnityEngine;
                 {
                     rayhit_obj.SendMessageUpwards("Interaction", null, SendMessageOptions.DontRequireReceiver);
                 }
-
                 if (rayhit_obj != rayhit_obj_old && rayhit.distance < triggerdistance)
                 {
                     rayhit_obj.SendMessageUpwards("OnLookOn", null, SendMessageOptions.DontRequireReceiver);
@@ -37,12 +36,13 @@ using UnityEngine;
                 {
                     rayhit_obj_old.SendMessageUpwards("OnLookOff", null, SendMessageOptions.DontRequireReceiver);
                 }
-
                 if (rayhit_obj == rayhit_obj_old && rayhit.distance < triggerdistance)
                 {
                     rayhit_obj.SendMessageUpwards("OnLookOn", null, SendMessageOptions.DontRequireReceiver);
+                } else {
+                    rayhit_obj.SendMessageUpwards("OnLookOff", null, SendMessageOptions.DontRequireReceiver);                    
                 }
-
+                
                 rayhit_obj_old = rayhit_obj;
             }
 

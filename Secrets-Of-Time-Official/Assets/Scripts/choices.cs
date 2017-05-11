@@ -17,8 +17,8 @@ public class choices : MonoBehaviour {
     public ParticleSystem parts;
     public int times_showed = 0;
     public ParticleSystem particles;
-    public int anim_multiplier = 3000;
-    public int anim_upper_limit = 3000;
+    public int anim_multiplier = 100;
+    public int anim_upper_limit = 100;
     public int anim_down_limit = 0;
     public AudioSource tel_effect;
     public pause Pause_ref;
@@ -52,7 +52,7 @@ public class choices : MonoBehaviour {
 
     public bool Toggle(bool _toggle)
     {
-        return _toggle ? false: true;
+        return !_toggle;
     }
 
     public int GetRoom() //Gets the room you are currently in.
@@ -142,13 +142,14 @@ public class choices : MonoBehaviour {
 
     void Start()
     {
-        Player.GetComponent<player_lookat>().triggerdistance = 20;      
+        Player.GetComponent<player_lookat>().triggerdistance = 20;
+        Time.timeScale = 1;      
     }
 
     void Update()
     {
-        Debug.Log(GetRoom());
-
+//        Debug.Log(GetRoom());
+        
         if (!Pause_ref.paused)
         {
             Cursor.lockState = CursorLockMode.Locked;
@@ -175,9 +176,8 @@ public class choices : MonoBehaviour {
                         camera_vc.chromaticAberration = anim_down_limit;
                         camera_t.angle = 0;
                 }
-
             } //Anim end                           
-
+            //Debug.Log(camera_vc.chromaticAberration);
             if (!hidden) SetTimer(10);
             if (Timer <= 0) Hide(TimeMachine);
 

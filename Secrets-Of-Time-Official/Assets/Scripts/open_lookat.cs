@@ -7,7 +7,7 @@ public class open_lookat : MonoBehaviour{
     public GameObject Canvas;
     public GameObject Interaction_Canvas = null;
     public bool IsInteractive = false;
-
+    int n;
     public void OnLookOn()
     {
         if (!Canvas.GetComponent<Canvas>().enabled)
@@ -16,6 +16,7 @@ public class open_lookat : MonoBehaviour{
             if (IsInteractive)
             {
                 Interaction_Canvas.GetComponent<Canvas>().enabled = true;
+                Debug.Log(n++);
             }
         }
     }

@@ -67,7 +67,6 @@ public class terminal : MonoBehaviour {
             player.GetComponent<crosshair>().enabled = 
             player.GetComponent<player_lookat>().enabled = 
             character.enabled = true;
-            Cursor.lockState = CursorLockMode.Locked;
             character_camera.transform.position = cam_pos;
             character_camera.transform.rotation = cam_rot;
 
@@ -94,6 +93,7 @@ public class terminal : MonoBehaviour {
 
     private void Update()
     {
+
         if(terminal_on){
             input_field.ActivateInputField();
         }

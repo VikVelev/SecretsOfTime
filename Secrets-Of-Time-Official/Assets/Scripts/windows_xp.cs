@@ -36,6 +36,7 @@ public class windows_xp : MonoBehaviour {
                 disable[i].SetActive(false);
             }
             //a=b=c=d=false
+            windows_start.enabled = true;
             player.GetComponent<FirstPersonController>().enabled =
             player.GetComponent<pause>().enabled = 
             player.GetComponent<choices>().enabled = 
@@ -52,6 +53,7 @@ public class windows_xp : MonoBehaviour {
         else
         {
             //Cursor.visible = false;
+            windows_start.enabled = false;
             Cursor.lockState = CursorLockMode.Locked;
             player.GetComponent<pause>().enabled = 
             player.GetComponent<choices>().enabled = 

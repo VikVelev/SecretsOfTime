@@ -61,7 +61,6 @@ public class pause : MonoBehaviour
             //unpause            
             Time.timeScale = 1;
             paused = false;
-
             //enable stuff
             choice_re.enabled = true;
             player.GetComponent<pause>().enabled = true;
@@ -80,16 +79,15 @@ public class pause : MonoBehaviour
 
             } else if ((choice_re.GetRoom() == 0 || choice_re.GetRoom() == 1) && musicplayer[choice_re.GetRoom()].isMusicOn)
             {               
-                audio_.other_sounds[choice_re.GetRoom()].TransitionTo(1f);
+                audio_.other_sounds[choice_re.GetRoom()].TransitionTo(0f);
 
             } else if(choice_re.GetRoom() > -1)
             {
                 audio_.songs[choice_re.GetRoom()].TransitionTo(0f);
             } else
             {
-                null_room.TransitionTo(1f);
+                null_room.TransitionTo(0f);
             }
-
 
             //Reenable TV if it was on
             if (moviewasplaying)
