@@ -1,11 +1,11 @@
 Тайните на времето
 
 Интерактивно образователно приложение за пътуване и преживяване на еволюцията на технологиите през годините.
-В момента е все още в разработка.
-Работи само на Windows 7 и нагоре 32/64 бита.
-Линк за сваляне (Понеже гитхъб не поддържа големи файлове):
 
-https://drive.google.com/drive/folders/0B5jlLfQwYn1Adi1wZHBDWkFlRUE?usp=sharing
+Работи на Windows 7 и нагоре 32/64 бита(GNU soon).
+
+Линк за сваляне:
+Пишете на и-мейл: viktorvelev8@gmail.com
 
 Използвани програми: Unity, C#, Cinema4D,  Photoshop, Audacity, Bosca Ceoil
 
@@ -21,10 +21,10 @@ Secrets of Time!
 An educational interactive application about traveling through time and experiencing the technology evolution throughout the years.
 
 At the moment it is in Beta version (Work in Progress).
-It works only on Windows 7 and up 64bit/32bit, preferrably 16:9 resolution.
-It is available for download at (since GitHub doesn't support large files) :
+It works only on Windows 7 and up 64bit/32bit(GNU Soon).
 
-https://drive.google.com/drive/folders/0B5jlLfQwYn1Adi1wZHBDWkFlRUE?usp=sharing
+Download link:
+Contact me at viktorvelev8@gmail.com
 
 Using: Unity, C#, Cinema4D,  Photoshop, Audacity, Bosca Ceoil
 
