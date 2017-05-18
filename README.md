@@ -7,7 +7,7 @@
 Линк за сваляне:
 Пишете на и-мейл: viktorvelev8@gmail.com
 
-Използвани програми: Unity, C#, Cinema4D,  Photoshop, Audacity, Bosca Ceoil
+Използвани програми: Unity, Visual Studio Code (C#), Cinema4D,  Photoshop, Audacity, Bosca Ceoil
 
 Начин на инсталация:
 1. Разархивиране на .7z файла.
@@ -26,7 +26,7 @@ It works only on Windows 7 and up 64bit/32bit(GNU Soon).
 Download link:
 Contact me at viktorvelev8@gmail.com
 
-Using: Unity, C#, Cinema4D,  Photoshop, Audacity, Bosca Ceoil
+Using: Unity, Visual Studio Code (C#), Cinema4D,  Photoshop, Audacity, Bosca Ceoil
 
 How to install:
 
